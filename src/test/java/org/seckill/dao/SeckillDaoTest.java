@@ -26,6 +26,7 @@ public class SeckillDaoTest {
         Seckill seckill=seckillDao.queryById(id);
         System.out.println(seckill.getName());
         System.out.println(seckill);
+        //abcdefg
     }
 
     @Test
