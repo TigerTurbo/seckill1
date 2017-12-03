@@ -11,7 +11,7 @@ CREATE TABLE `seckill` (
   `number` int(11) NOT NULL,
   `start_time` timestamp NOT NULL ,
   `end_time` timestamp NOT NULL ,
-  `create_time` timestamp NOT NULL,
+  `create_time` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `seckill_id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`seckill_id`),
   KEY `idx_start_time` (`start_time`),
@@ -32,7 +32,7 @@ CREATE TABLE `success_killed` (
   `seckill_id` bigint(20) NOT NULL,
   `user_phone` bigint(20) NOT NULL,
   `state` tinyint(4) NOT NULL DEFAULT '-1',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`seckill_id`,`user_phone`),
   KEY `idx_create_time` (`create_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

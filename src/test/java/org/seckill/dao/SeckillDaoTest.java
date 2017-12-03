@@ -8,6 +8,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 /*
 * 配置spring和juint整合，junit启动时加载SpringIOC容器
@@ -27,13 +29,18 @@ public class SeckillDaoTest {
         System.out.println(seckill.getName());
         System.out.println(seckill);
     }
-
+    @Test
+    /*java没有保存表述形参的记录*/
+    public void queryAll() throws Exception {
+        List<Seckill> seckills = seckillDao.queryAll(0, 100);
+        for (Seckill seckill:seckills) {
+            System.out.println(seckill);
+        }
+    }
     @Test
     public void queryById() throws Exception {
     }
 
-    @Test
-    public void queryAll() throws Exception {
-    }
+
 
 }
