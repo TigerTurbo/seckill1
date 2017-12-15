@@ -56,7 +56,7 @@ public class SeckillController {
 
     @RequestMapping(value = "/{seckillID}/exposer",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public SeckillResult<Exposer> exposer(Long seckillId){
+    public SeckillResult<Exposer> exposer(@PathVariable Long seckillId){
         SeckillResult<Exposer> result;
         try {
             Exposer exposer=seckillService.exportSeckillUrl(seckillId);
@@ -79,17 +79,17 @@ public class SeckillController {
             return new SeckillResult<seckillExecuetion>(true,execuetion);
         } catch(RepeatKillException e){
             seckillExecuetion execuetion=new seckillExecuetion(seckillId, -1,SeckillStateEnum.REPEAT_KILL);
-            return new SeckillResult<seckillExecuetion>(false,execuetion);
+            return new SeckillResult<seckillExecuetion>(true,execuetion);
 
         }catch (seckillCloseException e){
             seckillExecuetion execuetion=new seckillExecuetion(seckillId,0, SeckillStateEnum.END);
-            return new SeckillResult<seckillExecuetion>(false,execuetion);
+            return new SeckillResult<seckillExecuetion>(true,execuetion);
 
         }
         catch (seckillException e) {
             logger.error(e.getMessage(),e);
             seckillExecuetion execuetion=new seckillExecuetion(seckillId, -2,SeckillStateEnum.INNER_ERROR);
-            return new SeckillResult<seckillExecuetion>(false,execuetion);
+            return new SeckillResult<seckillExecuetion>(true,execuetion);
         }
 
     }

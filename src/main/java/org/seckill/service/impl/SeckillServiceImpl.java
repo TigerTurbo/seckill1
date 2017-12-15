@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 @Service
@@ -32,7 +33,7 @@ public class SeckillServiceImpl implements SeckillService{
     //md5盐值字符串
     private final String slat="r9yp32r'd;[w132awa.dwp;a,2'[]2[2pio#$";
     public List<Seckill> getSeckillList() {
-        return seckillDao.queryAll(0,4);
+        return seckillDao.queryAll(0,5);
     }
 
     public Seckill getById(Long seckillId) {
