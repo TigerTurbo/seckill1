@@ -14,16 +14,14 @@ import org.seckill.service.SeckillService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
-@Service
+@Component
 public class SeckillServiceImpl implements SeckillService{
-    private Logger logger= LoggerFactory.getLogger(this.getClass());
+    private final Logger logger= LoggerFactory.getLogger(this.getClass());
     //注入service依赖
     @Autowired
     private SeckillDao seckillDao;
@@ -33,14 +31,17 @@ public class SeckillServiceImpl implements SeckillService{
     //md5盐值字符串
     private final String slat="r9yp32r'd;[w132awa.dwp;a,2'[]2[2pio#$";
     public List<Seckill> getSeckillList() {
-        return seckillDao.queryAll(0,5);
+        logger.info("***遍历所有秒杀商品****");
+        return seckillDao.queryAll(0,100);
     }
 
     public Seckill getById(Long seckillId) {
+        logger.info("***根据id查出商品*****");
         return seckillDao.queryById(seckillId);
     }
 
     public Exposer exportSeckillUrl(long seckillId) {
+
         Seckill seckill=seckillDao.queryById(seckillId);
         if(seckill==null){
             return new Exposer(false,seckillId);
@@ -74,21 +75,26 @@ public class SeckillServiceImpl implements SeckillService{
         if(md5==null||!md5.equals(getMd5(seckillId))){
             throw new seckillException("秒杀数据被重写");
         }
+        logger.info("md5验证"+md5.equals(getMd5(seckillId)));
         Date nowTime=new Date();
         //执行秒杀逻辑：减库存+记录够买行为
 
         try {
             int updateCount=seckillDao.reduceNumber(seckillId,nowTime);
+            logger.info("updateCount:"+updateCount);
             if(updateCount<=0){
                 //没有更新到记录，秒杀结束
                 throw new seckillCloseException("seckill is closed");
             }else {
                 //记录购买行为
+                logger.info("记录购买行为");
                 int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
+                logger.info("insertCount:"+insertCount);
                 if (insertCount <= 0) {
                     throw new RepeatKillException("seckilled repeat");
                 } else {
                     SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId);
+                    logger.info("返回成功");
                     return new seckillExecuetion(seckillId, 1, SeckillStateEnum.SUCCESS, successKilled);
                 }
 

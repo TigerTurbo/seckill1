@@ -51,12 +51,14 @@ public class SeckillController {
             return "forward:/seckill/list";
         }
         model.addAttribute("seckill",seckill);
+        logger.info("找到对应商品");
         return "detail";
     }
 
-    @RequestMapping(value = "/{seckillID}/exposer",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/{seckillId}/exposer",method = RequestMethod.GET,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public SeckillResult<Exposer> exposer(@PathVariable Long seckillId){
+        logger.info("*******后台暴露秒杀地址*******");
         SeckillResult<Exposer> result;
         try {
             Exposer exposer=seckillService.exportSeckillUrl(seckillId);
@@ -69,8 +71,11 @@ public class SeckillController {
     }
 
     @RequestMapping(value = "/{seckillId}/{md5}/execution",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
-    public SeckillResult<seckillExecuetion> execute(Long seckillId, String md5, @CookieValue(value = "killPhone",required = false) Long phone){
+    @ResponseBody
+    public SeckillResult<seckillExecuetion> execute(@PathVariable Long seckillId, @PathVariable String md5, @CookieValue(value = "killPhone",required = false) Long phone){
+        logger.info("执行秒杀逻辑");
         if(phone==null){
+            logger.info("没有手机号");
             return new SeckillResult<seckillExecuetion>(false,"未注册");
         }
         SeckillResult<seckillExecuetion> result;

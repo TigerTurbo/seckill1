@@ -33,7 +33,7 @@
         </div>
     </div>
     <%--登录弹出层，输入电话--%>
-    <div id="killPhoneModel" class="modal fade">
+    <div id="killPhoneModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,7 +73,7 @@
 <%--jQuery cookie操作插件--%>
 <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <%--jQuery countDown倒计时插件--%>
-<script src="https://cdn.bootcss.com/jquery-countdown/2.0.1/jquery.countdown.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
 <%--jQuery cookie操作插件--%>
 <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <%--jQuery countDown倒计时插件--%>
