@@ -58,5 +58,16 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-test:4.1.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient-cache:4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpmime:4.3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.47" level="project" />
+    <orderEntry type="library" name="Maven: com.qunar.base:meerkat-mybatis:2.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.7.5" level="project" />
+    <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
   </component>
 </module>

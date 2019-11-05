@@ -18,6 +18,14 @@ public class SeckillServiceTest {
     private Logger logger= LoggerFactory.getLogger(this.getClass());
     @Resource
     private SeckillService seckillService;
+
+    @Resource
+    private InterceptService interceptService;
+
+    @Test
+    public void executeOrder() throws Exception{
+        interceptService.doService();
+    }
     @Test
     public void getSeckillList() throws Exception {
         List<Seckill> seckillList = seckillService.getSeckillList();
